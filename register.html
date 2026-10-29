@@ -420,8 +420,8 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify({
       action: 'register',
-      firstName: firstName.value.trim(),
-      lastName: lastName.value.trim(),
+      first_name: firstName.value.trim(),
+      last_name: lastName.value.trim(),
       email: email.value.trim(),
       password: password.value
     })
