@@ -255,6 +255,17 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 }
 .btn-upgrade:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
+/* Subscription highlight animation */
+@keyframes highlightPulse {
+  0% { box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.5); }
+  50% { box-shadow: 0 0 20px 4px rgba(212, 160, 23, 0.3); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 160, 23, 0); }
+}
+.section-card.highlight {
+  animation: highlightPulse 1.5s ease-out 2;
+  border-color: var(--gold) !important;
+}
+
 /* Danger zone */
 .danger-zone {
   margin-top: 8px;
@@ -308,7 +319,7 @@ textarea.form-input { resize: vertical; min-height: 80px; }
     <a href="progress-board.html" class="sidebar-link"><span class="icon">🏅</span> Progress Board</a>
     <div class="sidebar-section">Account</div>
     <a href="profile.html" class="sidebar-link active"><span class="icon">👤</span> Profile</a>
-    <a href="profile.html" class="sidebar-link"><span class="icon">💳</span> Subscription</a>
+    <a href="profile.html#subscription" class="sidebar-link"><span class="icon">💳</span> Subscription</a>
   </nav>
   <div class="sidebar-user">
     <div class="sidebar-avatar" id="userAvatar">?</div>
@@ -426,7 +437,7 @@ textarea.form-input { resize: vertical; min-height: 80px; }
   </div>
 
   <!-- Subscription Summary -->
-  <div class="section-card">
+  <div class="section-card" id="subscription">
     <h3><span class="s-icon">💳</span> Subscription</h3>
     <div class="sub-summary">
       <div class="sub-tier-box tier-box-free" id="subTierBox">
@@ -440,7 +451,7 @@ textarea.form-input { resize: vertical; min-height: 80px; }
         <div class="sub-detail-row"><span class="label">Auto-Renew</span><span class="value" id="subRenew">—</span></div>
       </div>
     </div>
-    <a href="profile.html" class="btn-upgrade">Upgrade Plan →</a>
+    <button class="btn-upgrade" onclick="alert('Upgrade flow coming soon! Para sa Pro at Master tiers.')">Upgrade Plan →</button>
   </div>
 
   <!-- Danger Zone -->
@@ -681,6 +692,18 @@ function loadProfile() {
 }
 
 loadProfile();
+
+// Scroll to subscription section if hash is #subscription
+if (window.location.hash === '#subscription') {
+  setTimeout(() => {
+    const subSection = document.getElementById('subscription');
+    if (subSection) {
+      subSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      subSection.classList.add('highlight');
+      setTimeout(() => subSection.classList.remove('highlight'), 3500);
+    }
+  }, 300);
+}
 </script>
 </body>
 </html>
