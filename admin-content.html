@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Content Manager — DMAC Admin</title>
+<style id="iframe-mode">
+.in-iframe .sidebar, .in-iframe .topbar, .in-iframe .sidebar-overlay { display: none !important; }
+.in-iframe .main { margin-left: 0 !important; padding: 20px !important; max-width: 100% !important; }
+</style>
 <meta name="theme-color" content="#CE1126">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -333,6 +337,9 @@ select { cursor: pointer; -webkit-appearance: none; appearance: none;
 </style>
 </head>
 <body>
+<script>
+if (window.parent !== window) { document.documentElement.classList.add('in-iframe'); }
+</script>
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">

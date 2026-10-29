@@ -377,16 +377,16 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
   </a>
   <nav class="sidebar-nav">
     <div class="sidebar-section">Overview</div>
-    <a href="admin.html" class="sidebar-link active"><span class="icon">📊</span> Dashboard</a>
+    <a href="#" class="sidebar-link active" data-page="dashboard" onclick="loadPage('dashboard',this);return false;"><span class="icon">📊</span> Dashboard</a>
     <div class="sidebar-section">Management</div>
-    <a href="admin-subscribers.html" class="sidebar-link"><span class="icon">👥</span> Subscribers<span class="badge" id="badgeSubs">0</span></a>
-    <a href="admin-content.html" class="sidebar-link"><span class="icon">📚</span> Content</a>
-    <a href="admin-bookings.html" class="sidebar-link"><span class="icon">📅</span> Bookings<span class="badge" id="badgeBook">0</span></a>
-    <a href="admin-payments.html" class="sidebar-link"><span class="icon">💰</span> Payments</a>
+    <a href="#" class="sidebar-link" data-page="admin-subscribers.html" onclick="loadPage('admin-subscribers.html',this);return false;"><span class="icon">👥</span> Subscribers<span class="badge" id="badgeSubs">0</span></a>
+    <a href="#" class="sidebar-link" data-page="admin-content.html" onclick="loadPage('admin-content.html',this);return false;"><span class="icon">📚</span> Content</a>
+    <a href="#" class="sidebar-link" data-page="admin-bookings.html" onclick="loadPage('admin-bookings.html',this);return false;"><span class="icon">📅</span> Bookings<span class="badge" id="badgeBook">0</span></a>
+    <a href="#" class="sidebar-link" data-page="admin-payments.html" onclick="loadPage('admin-payments.html',this);return false;"><span class="icon">💰</span> Payments</a>
     <div class="sidebar-section">Tools</div>
-    <a href="admin-emails.html" class="sidebar-link"><span class="icon">✉️</span> Email Blasts</a>
-    <a href="admin-analytics.html" class="sidebar-link"><span class="icon">📈</span> Analytics</a>
-    <a href="admin-settings.html" class="sidebar-link"><span class="icon">⚙️</span> Settings</a>
+    <a href="#" class="sidebar-link" data-page="admin-emails.html" onclick="loadPage('admin-emails.html',this);return false;"><span class="icon">✉️</span> Email Blasts</a>
+    <a href="#" class="sidebar-link" data-page="admin-analytics.html" onclick="loadPage('admin-analytics.html',this);return false;"><span class="icon">📈</span> Analytics</a>
+    <a href="#" class="sidebar-link" data-page="admin-settings.html" onclick="loadPage('admin-settings.html',this);return false;"><span class="icon">⚙️</span> Settings</a>
     <div class="sidebar-section" style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px;">Switch</div>
     <a href="dashboard.html" class="sidebar-link"><span class="icon">🎓</span> Student View</a>
   </nav>
@@ -408,7 +408,8 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- MAIN -->
-<main class="main">
+<main class="main" id="mainArea">
+<div id="dashboardContent">
   <div class="page-header">
     <h1>ADMIN DASHBOARD</h1>
     <div class="hdr-right">
@@ -456,19 +457,19 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
 
   <!-- QUICK ACTIONS -->
   <div class="quick-actions">
-    <a href="admin-content.html" class="qa-btn">
+    <a href="#" class="qa-btn" onclick="loadPage('admin-content.html',document.querySelector('[data-page=&quot;admin-content.html&quot;]'));return false;">
       <div class="qa-icon" style="background:var(--red-soft);">📹</div>
       <div><div class="qa-text">Add New Lesson</div><div class="qa-sub">Upload video content</div></div>
     </a>
-    <a href="admin-bookings.html" class="qa-btn">
+    <a href="#" class="qa-btn" onclick="loadPage('admin-bookings.html',document.querySelector('[data-page=&quot;admin-bookings.html&quot;]'));return false;">
       <div class="qa-icon" style="background:var(--blue-soft);">📅</div>
       <div><div class="qa-text">Manage Slots</div><div class="qa-sub">Set coaching availability</div></div>
     </a>
-    <a href="admin-emails.html" class="qa-btn">
+    <a href="#" class="qa-btn" onclick="loadPage('admin-emails.html',document.querySelector('[data-page=&quot;admin-emails.html&quot;]'));return false;">
       <div class="qa-icon" style="background:var(--gold-soft);">✉️</div>
       <div><div class="qa-text">Send Email Blast</div><div class="qa-sub">Notify subscribers</div></div>
     </a>
-    <a href="admin-subscribers.html" class="qa-btn">
+    <a href="#" class="qa-btn" onclick="loadPage('admin-subscribers.html',document.querySelector('[data-page=&quot;admin-subscribers.html&quot;]'));return false;">
       <div class="qa-icon" style="background:var(--success-soft);">👥</div>
       <div><div class="qa-text">View All Students</div><div class="qa-sub">CRM &amp; subscriber list</div></div>
     </a>
@@ -480,7 +481,7 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
     <div class="panel">
       <div class="panel-header">
         <h2>REVENUE (LAST 6 MONTHS)</h2>
-        <a href="admin-payments.html" class="ph-action">View All →</a>
+        <a href="#" class="ph-action" onclick="loadPage('admin-payments.html',document.querySelector('[data-page=&quot;admin-payments.html&quot;]'));return false;">View All →</a>
       </div>
       <div class="panel-body">
         <div class="chart-area" id="revenueChart"></div>
@@ -506,7 +507,7 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
     <div class="panel">
       <div class="panel-header">
         <h2>NEWEST STUDENTS</h2>
-        <a href="admin-subscribers.html" class="ph-action">View All →</a>
+        <a href="#" class="ph-action" onclick="loadPage('admin-subscribers.html',document.querySelector('[data-page=&quot;admin-subscribers.html&quot;]'));return false;">View All →</a>
       </div>
       <div class="panel-body" id="recentStudents"></div>
     </div>
@@ -514,7 +515,7 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
     <div class="panel">
       <div class="panel-header">
         <h2>UPCOMING SESSIONS</h2>
-        <a href="admin-bookings.html" class="ph-action">Manage →</a>
+        <a href="#" class="ph-action" onclick="loadPage('admin-bookings.html',document.querySelector('[data-page=&quot;admin-bookings.html&quot;]'));return false;">Manage →</a>
       </div>
       <div class="panel-body" id="upcomingSessions"></div>
     </div>
@@ -524,7 +525,7 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
   <div class="panel full-panel">
     <div class="panel-header">
       <h2>SUBSCRIBER OVERVIEW</h2>
-      <a href="admin-subscribers.html" class="ph-action">Full CRM →</a>
+      <a href="#" class="ph-action" onclick="loadPage('admin-subscribers.html',document.querySelector('[data-page=&quot;admin-subscribers.html&quot;]'));return false;">Full CRM →</a>
     </div>
     <div class="panel-body" style="padding:0 0 8px;">
       <div style="overflow-x:auto;">
@@ -544,6 +545,8 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
       </div>
     </div>
   </div>
+</div>
+<iframe id="portalFrame" src="" style="display:none;width:100%;height:calc(100vh - 20px);border:none;"></iframe>
 </main>
 
 <div class="toast" id="toast"></div>
@@ -551,6 +554,45 @@ button { cursor: pointer; border: none; font-family: inherit; background: none; 
 <script>
 var API_URL = 'https://script.google.com/macros/s/AKfycbxDA9it2NE1cAE2_gvdJfoacwwvTA_w3ImkHhqxoy9YEgnc-Lr39jmxTF8ks3wDuUIwNw/exec';
 var token = ''; try { token = localStorage.getItem('dmac_token') || ''; } catch(e) {}
+// Portal navigation
+function loadPage(page, linkEl) {
+  var dashboard = document.getElementById('dashboardContent');
+  var frame = document.getElementById('portalFrame');
+  var allLinks = document.querySelectorAll('.sidebar-link');
+  
+  // Update active state
+  allLinks.forEach(function(l) { l.classList.remove('active'); });
+  if (linkEl) linkEl.classList.add('active');
+  
+  if (page === 'dashboard') {
+    dashboard.style.display = '';
+    frame.style.display = 'none';
+    frame.src = '';
+  } else {
+    dashboard.style.display = 'none';
+    frame.style.display = 'block';
+    frame.src = page;
+  }
+  
+  // Close mobile sidebar
+  var sidebar = document.getElementById('sidebar');
+  var overlay = document.getElementById('sidebarOverlay');
+  if (sidebar) sidebar.classList.remove('open');
+  if (overlay) overlay.classList.remove('show');
+}
+
+// Handle hash navigation
+if (window.location.hash) {
+  var hashPage = window.location.hash.substring(1);
+  if (hashPage && hashPage !== 'dashboard') {
+    var targetLink = document.querySelector('[data-page="' + hashPage + '"]');
+    if (targetLink) {
+      setTimeout(function() { loadPage(hashPage, targetLink); }, 100);
+    }
+  }
+}
+
+
 
 function showToast(m,t){ var el=document.getElementById('toast'); el.textContent=m; el.className='toast toast-'+t+' show'; setTimeout(function(){el.classList.remove('show')},4000); }
 
