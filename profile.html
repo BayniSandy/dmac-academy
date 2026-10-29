@@ -693,17 +693,39 @@ function loadProfile() {
 
 loadProfile();
 
-// Scroll to subscription section if hash is #subscription
-if (window.location.hash === '#subscription') {
-  setTimeout(() => {
-    const subSection = document.getElementById('subscription');
-    if (subSection) {
-      subSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      subSection.classList.add('highlight');
-      setTimeout(() => subSection.classList.remove('highlight'), 3500);
-    }
-  }, 300);
+// Scroll to subscription section
+function scrollToSubscription() {
+  const subSection = document.getElementById('subscription');
+  if (subSection) {
+    subSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    subSection.classList.remove('highlight');
+    void subSection.offsetWidth; // force reflow
+    subSection.classList.add('highlight');
+    setTimeout(() => subSection.classList.remove('highlight'), 3500);
+  }
 }
+
+// On page load
+if (window.location.hash === '#subscription') {
+  setTimeout(scrollToSubscription, 300);
+}
+
+// When clicking subscription link while already on profile.html
+window.addEventListener('hashchange', function() {
+  if (window.location.hash === '#subscription') {
+    scrollToSubscription();
+  }
+});
+
+// Handle same-hash click (already on #subscription, click again)
+document.querySelectorAll('a[href="profile.html#subscription"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    if (window.location.hash === '#subscription') {
+      e.preventDefault();
+      scrollToSubscription();
+    }
+  });
+});
 </script>
 </body>
 </html>
