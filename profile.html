@@ -255,6 +255,29 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 }
 .btn-upgrade:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
+/* Upgrade Plans Grid */
+.plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+.plan-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 20px 16px; text-align: center; position: relative; transition: all 0.2s; }
+.plan-card:hover { transform: translateY(-2px); }
+.plan-card.plan-pro:hover { border-color: rgba(206,17,38,0.4); box-shadow: 0 4px 20px rgba(206,17,38,0.1); }
+.plan-card.plan-master { border-color: rgba(212,160,23,0.3); }
+.plan-card.plan-master:hover { border-color: rgba(212,160,23,0.5); box-shadow: 0 4px 20px rgba(212,160,23,0.15); }
+.plan-popular { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; font-size: 0.7rem; font-weight: 700; padding: 2px 12px; border-radius: 20px; letter-spacing: 0.5px; white-space: nowrap; }
+.plan-badge { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; margin-bottom: 4px; }
+.plan-pro .plan-badge { color: var(--red); }
+.plan-master .plan-badge { color: var(--gold); }
+.plan-price { font-size: 1.5rem; font-weight: 700; color: var(--fg); }
+.plan-price span { font-size: 0.75rem; font-weight: 400; color: var(--fg-muted); }
+.plan-renew { font-size: 0.75rem; color: var(--fg-dim); margin-bottom: 12px; }
+.plan-features { list-style: none; padding: 0; margin: 0 0 16px; text-align: left; }
+.plan-features li { font-size: 0.8rem; color: var(--fg-muted); padding: 3px 0; }
+.btn-plan { width: 100%; padding: 10px; border: none; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+.btn-plan-pro { background: var(--red); color: #fff; }
+.btn-plan-pro:hover { filter: brightness(1.15); }
+.btn-plan-master { background: var(--gold); color: #000; }
+.btn-plan-master:hover { filter: brightness(1.1); }
+@media (max-width: 600px) { .plans-grid { grid-template-columns: 1fr; } }
+
 /* Subscription highlight animation */
 @keyframes highlightPulse {
   0% { box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.5); }
@@ -451,7 +474,37 @@ textarea.form-input { resize: vertical; min-height: 80px; }
         <div class="sub-detail-row"><span class="label">Auto-Renew</span><span class="value" id="subRenew">—</span></div>
       </div>
     </div>
-    <button class="btn-upgrade" onclick="alert('Upgrade flow coming soon! Para sa Pro at Master tiers.')">Upgrade Plan →</button>
+    <!-- Upgrade Plans -->
+    <div class="upgrade-plans" id="upgradePlans">
+      <h4 style="margin: 16px 0 10px; color: var(--fg-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Upgrade Your Plan</h4>
+      <div class="plans-grid">
+        <div class="plan-card plan-pro">
+          <div class="plan-badge">PRO</div>
+          <div class="plan-price">₱199<span>/mo intro</span></div>
+          <div class="plan-renew">₱249/mo renewal</div>
+          <ul class="plan-features">
+            <li>✅ All Free modules</li>
+            <li>✅ Pro modules (Mod 4-7)</li>
+            <li>✅ 3-day free trial</li>
+            <li>✅ Quizzes & certificates</li>
+          </ul>
+          <button class="btn-plan btn-plan-pro" onclick="handleUpgrade('pro')">Start Pro Trial →</button>
+        </div>
+        <div class="plan-card plan-master">
+          <div class="plan-popular">⭐ BEST VALUE</div>
+          <div class="plan-badge">MASTER</div>
+          <div class="plan-price">₱399<span>/mo intro</span></div>
+          <div class="plan-renew">₱499/mo renewal</div>
+          <ul class="plan-features">
+            <li>✅ Everything in Pro</li>
+            <li>✅ Master modules (Mod 8-10)</li>
+            <li>✅ Live coaching sessions</li>
+            <li>✅ Priority booking</li>
+          </ul>
+          <button class="btn-plan btn-plan-master" onclick="handleUpgrade('master')">Go Master →</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Danger Zone -->
@@ -692,6 +745,27 @@ function loadProfile() {
 }
 
 loadProfile();
+
+// Handle upgrade button click
+function handleUpgrade(tier) {
+  const token = localStorage.getItem('dmac_token');
+  if (!token) {
+    window.location.href = 'login.html';
+    return;
+  }
+  const tierName = tier === 'master' ? 'Master' : 'Pro';
+  const price = tier === 'master' ? '₱399' : '₱199';
+  const msg = `🎯 ${tierName} Plan — ${price}/month\n\nPayment integration coming soon!\nPag-launch ng January 1, 2027, pwede ka nang mag-subscribe via GCash, Maya, or Bank Transfer.\n\nStay tuned, future Arnisador! 🥋`;
+
+  // Show a nicer in-page notification instead of alert
+  const notif = document.createElement('div');
+  notif.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--bg-card,#1a1a1a);border:2px solid ' + (tier==='master'?'var(--gold)':'var(--red)') + ';border-radius:16px;padding:28px 24px;max-width:360px;width:90%;z-index:9999;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);';
+  notif.innerHTML = '<div style="font-size:2rem;margin-bottom:8px;">' + (tier==='master'?'👑':'⚔️') + '</div><div style="font-family:Bebas Neue,sans-serif;font-size:1.4rem;letter-spacing:1px;color:' + (tier==='master'?'var(--gold)':'var(--red)') + ';">' + tierName.toUpperCase() + ' PLAN</div><div style="font-size:0.85rem;color:var(--fg-muted);margin:12px 0;line-height:1.5;">Payment integration coming soon!<br>Pag-launch ng <strong>January 1, 2027</strong>, pwede ka nang mag-subscribe via GCash, Maya, or Bank Transfer.</div><div style="font-size:0.8rem;color:var(--fg-dim);margin-bottom:16px;">Stay tuned, future Arnisador! 🥋</div><button onclick="this.parentElement.remove()" style="background:' + (tier==='master'?'var(--gold)':'var(--red)') + ';color:' + (tier==='master'?'#000':'#fff') + ';border:none;padding:10px 32px;border-radius:8px;font-weight:600;cursor:pointer;">Got it!</button>';
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;';
+  overlay.onclick = () => { notif.remove(); overlay.remove(); };
+  document.body.append(overlay, notif);
+}
 
 // Scroll to subscription section
 function scrollToSubscription() {
