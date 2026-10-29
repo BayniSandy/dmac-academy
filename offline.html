@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Offline — DMAC Academy</title>
+<meta name="theme-color" content="#CE1126">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DMAC Academy">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192x192.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -33,5 +39,14 @@ p{color:#A0A0A0;font-size:0.95rem;max-width:400px;line-height:1.6;margin-bottom:
 <h1>YOU ARE OFFLINE</h1>
 <p>It looks like you lost your internet connection. Your progress is saved. Reconnect and try again.</p>
 <button class="btn" onclick="window.location.reload()">🔄 Try Again</button>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('[DMAC] SW registered:', reg.scope))
+      .catch(err => console.warn('[DMAC] SW failed:', err));
+  });
+}
+</script>
 </body>
 </html>

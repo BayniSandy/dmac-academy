@@ -2,12 +2,12 @@
   "name": "DMAC Academy",
   "short_name": "DMAC",
   "description": "Official online learning platform of D-Maharlika Arnis Club — Grip. Strike. Rise.",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0D0D0D",
   "theme_color": "#CE1126",
-  "scope": "/",
+  "scope": "./",
   "lang": "en",
   "categories": ["education", "sports"],
   "icons": [
@@ -80,19 +80,19 @@
     {
       "name": "Dashboard",
       "short_name": "Dashboard",
-      "url": "/dashboard.html",
+      "url": "./dashboard.html",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Lessons",
       "short_name": "Lessons",
-      "url": "/lessons.html",
+      "url": "./lessons.html",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Book a Session",
       "short_name": "Book",
-      "url": "/bookings.html",
+      "url": "./bookings.html",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ]
